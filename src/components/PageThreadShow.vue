@@ -1,5 +1,5 @@
 <template>
-  <div class="col-large push-top">
+  <div v-if="thread" class="col-large push-top">
     <h1>{{ thread.title }}</h1>
 
     <div class="post-list">
@@ -127,13 +127,17 @@
       </div>
     </div>
   </div>
+  <div v-else class="cool full text-center">
+    <h1>This thread does not exist </h1>
+  <router-link :to="{name:'Home'}">Read some cool threads</router-link>
+  </div>
 </template>
 
 <script>
 import sourceData from '@/assets/data.json'
 export default {
-  props:{
-    id:{
+  props: {
+    id: {
       required: true,
       type: String
     }
@@ -145,9 +149,9 @@ export default {
       users: sourceData.users
     }
   },
-  computed:{
-    thread() {
-      return this.threads.find(thread => thread.id === this.id) // also avaliable under this.$route.oarams.id
+  computed: {
+    thread () {
+      return this.threads.find((thread) => thread.id === this.id) // also avaliable under this.$route.oarams.id
     }
   },
   methods: {
