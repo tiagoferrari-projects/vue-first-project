@@ -9,6 +9,8 @@
 <script>
 import PostList from '@/components/PostList.vue'
 import sourceData from '@/assets/data.json'
+import PostEditor from '@/components/PostEditor.vue'
+
 export default {
   name: 'ThreadShow',
   components: {
