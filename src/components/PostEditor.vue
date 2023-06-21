@@ -2,7 +2,7 @@
   <div class="col-full">
     <form @submit.prevent="save">
       <div class="form-group">
-        <textarea v-model="text" :value="text" name="" id="" cols="30" rows="10"
+        <textarea v-model="text" name="" id="" cols="30" rows="10"
           class="form-input"></textarea>
       </div>
       <div class="form-actions">

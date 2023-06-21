@@ -9,7 +9,7 @@
             <router-link :to="{name: 'ThreadShow', params: {id: thread.id}}">{{ thread.title }}</router-link>
           </p>
           <p class="text-faded text-xsmall">
-            By <a href="#">{{ userById(thread.userId).name }}</a>, {{ thread.publishedAt }}.
+            By <a href="#">{{ userById(thread.userId).name }}</a>, <AppDate :timestamp="post.publishedAt"/>.
           </p>
         </div>
 
@@ -26,7 +26,7 @@
             <p class="text-xsmall">
               <a href="#">{{ userById(thread.userId).name }}</a>
             </p>
-            <p class="text-xsmall text-faded">{{ thread.publishedAt }}</p>
+            <p class="text-xsmall text-faded"><AppDate :timestamp="post.publishedAt"/></p>
           </div>
         </div>
       </div>
@@ -36,6 +36,7 @@
 
 <script>
 import sourceData from '@/assets/data.json'
+
 export default {
   props: {
     threads: { type: Array, required: true }
@@ -46,11 +47,11 @@ export default {
       users: sourceData.users
     }
   },
-  methodas: {
+  methods: {
     postById (postId) {
       return this.posts.find((p) => p.id === postId)
     },
-    suerById (userId) {
+    userById (userId) {
       return this.users.find((p) => p.id === userId)
     }
   }
