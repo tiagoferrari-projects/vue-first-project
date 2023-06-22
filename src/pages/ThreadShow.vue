@@ -8,7 +8,6 @@
 
 <script>
 import PostList from '@/components/PostList.vue'
-import sourceData from '@/assets/data.json'
 import PostEditor from '@/components/PostEditor.vue'
 
 export default {
@@ -23,15 +22,15 @@ export default {
       type: String
     }
   },
-  data () {
-    return {
-      threads: sourceData.threads,
-      posts: sourceData.posts
-    }
-  },
   computed: {
+    threads () {
+      return this.$store.state.threads
+    },
+    posts () {
+      return this.$store.state.posts
+    },
     thread () {
-      return this.threads.find((thread) => thread.id === this.id) // also avaliable under this.$route.oarams.id
+      return this.$store.getters['threads/thread'](this.id)
     },
     threadPosts () {
       return this.posts.filter(post => post.threadId === this.id)
@@ -43,8 +42,7 @@ export default {
         ...eventData.posts,
         threadId: this.id
       }
-      this.posts.push(post)
-      this.thread.posts.push(post.id)
+      this.$store.dispatch('createPost', post)
     }
   }
 }

@@ -12,13 +12,13 @@ const routes = [
     component: HomePage
   },
   {
-    path: 'category/:id',
+    path: '/category/:id',
     name: 'Category',
     component: Category,
     props: true
   },
   {
-    path: 'forum/:id',
+    path: '/forum/:id',
     name: 'ForumPage',
     component: Category,
     props: true
